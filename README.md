@@ -1,27 +1,48 @@
-# RealState
+# Real State
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+<img src="https://res.cloudinary.com/dtqijixar/image/upload/v1691712385/Previews/Preview_Ecommerce_2_zitmdi.jpg" height="300px"/>
 
-## Development server
+### [Demo](https://next-ecommerce-front-swart.vercel.app)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Cloning the repository
 
-## Code scaffolding
+```shell
+git clone https://github.com/MexLegend/angular-real-state-app.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started
 
-## Build
+Install the dependencies:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```sh
+$ pnpm i
+# or
+$ yarn
+# or
+$ npm i
+```
 
-## Running unit tests
+Setup .environment file
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```js
+URI: 
+GOOGLE_CLIENT_ID: 
+GOOGLE_CLIENT_SECRET:
+MAPBOX_TOKEN: 
+CLOUDINARY_NAME:
+CLOUDINARY_PRESET:
+```
 
-## Running end-to-end tests
+Start the app
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```sh
+$ pnpm start
+# or
+$ yarn start
+# or
+$ npm run start
+```
 
-## Further help
+## Built With
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Angular 16.1.0
