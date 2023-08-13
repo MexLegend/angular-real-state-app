@@ -25,7 +25,6 @@ ngx-dropzone-preview:first-of-type {
 ngx-dropzone-preview:not(:first-of-type) {
     @apply flex;
     @apply flex-1;
-    @apply !max-w-[50%];
     @apply !h-[228px];
 }
 

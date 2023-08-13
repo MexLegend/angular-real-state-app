@@ -26,7 +26,7 @@ export class FloatingFooterComponent {
     this.modalService.setModalData({
       component: isLoggedIn ? ContactComponent : LoginModalComponent,
       title: isLoggedIn ? '' : 'Login',
-      data: { loginAction: 'Login' },
+      data: { loginAction: 'Login', agent: this.listing?.user },
       maxWidth: "max-w-[600px]",
       enableClose: true
     });

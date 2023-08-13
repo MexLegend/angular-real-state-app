@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "https://fonts.googleapis.com/icon?family=Material+Icons";
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
 @font-face {
     font-family: "Prodigysans";
     src: url("../src/assets/fonts/ProdigySans-Regular.ttf");

@@ -12,7 +12,8 @@
     duration-75
     " [ngClass]="{
         'opacity-100': showModal,
-        'delay-[250ms]': !showModal
+        'delay-[250ms]': !showModal,
+        'px-4': !isExpanded
     }" (click)="closeOnBackdropClick && handleClose()">
   <section class="
         relative 

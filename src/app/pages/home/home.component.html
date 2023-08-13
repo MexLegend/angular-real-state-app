@@ -5,7 +5,7 @@
 <app-container>
   <div [ngClass]="{ hidden: isDrawerOpen }">
     <div
-      class="gap-6 grid grid-cols-4 pt-52 max-[1128px]:grid-cols-3 max-[950px]:grid-cols-2 max-sm:grid-cols-1 rounded">
+      class="gap-6 grid grid-cols-4 pt-52 pb-5 max-[1128px]:grid-cols-3 max-[950px]:grid-cols-2 max-sm:grid-cols-1 rounded">
       <ng-container *ngIf="!isLoading">
         <app-listing-card *ngFor="let listing of listings" [data]="listing">
         </app-listing-card>

@@ -17,8 +17,8 @@
         </span>
     </ngx-dropzone-label>
 
-    <ngx-dropzone-preview class="!bg-gradient-to-r from-neutral-50 to-neutral-50 !p-0" *ngFor="let file of files"
-        [removable]="!!file.file && !file.isDeleting" 
+    <ngx-dropzone-preview class="!bg-gradient-to-r from-neutral-50 to-neutral-50 !p-0 !max-w-full max-md:!max-w-full"
+        *ngFor="let file of files" [removable]="!!file.file && !file.isDeleting"
         (removed)="hanleOnRemove(file.file!.public_id)">
 
         <ngx-dropzone-label *ngIf="file.state && file.state !== 'DONE'" class="
@@ -94,7 +94,8 @@
         flex-col
         items-center
         justify-center
-        max-w-[50%] 
+        !max-w-[calc(50%-8px)] 
+        max-md:!max-w-full
         w-full
         h-[228px]
         overflow-clip
