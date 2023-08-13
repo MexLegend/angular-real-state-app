@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 @font-face {
     font-family: "Prodigysans";
     src: url("../src/assets/fonts/ProdigySans-Regular.ttf");
@@ -72,4 +75,8 @@ ngx-dropzone-remove-badge:active {
 
 ngx-dropzone-remove-badge>svg>line {
     @apply !stroke-neutral-950;
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+    max-width: max-content !important;
 }

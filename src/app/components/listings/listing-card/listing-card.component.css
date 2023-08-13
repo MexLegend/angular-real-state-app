@@ -1,6 +1,0 @@
-@import "https://fonts.googleapis.com/icon?family=Material+Icons";
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
-.mat-mdc-menu-panel.mat-mdc-menu-panel {
-    max-width: max-content !important;
-}

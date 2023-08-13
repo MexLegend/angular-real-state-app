@@ -24,8 +24,7 @@ import { SafeLocation } from 'src/app/types/listing';
     MatMenuModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  standalone: true,
-  encapsulation: ViewEncapsulation.None
+  standalone: true
 })
 export class ListingCardComponent {
 
