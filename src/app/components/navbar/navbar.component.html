@@ -1,0 +1,23 @@
+<div *ngIf="!hideNavbar" #navbar class="w-full z-[60] transition-all duration-200 bg-white shadow-sm" [ngClass]="{fixed: currentPage === '/'
+}">
+  <div class="border-b-[1px] border-transparent border-b-brown-100">
+    <app-container [expandHeight]="true" [maxWidth]="
+        currentPage === '/'
+          ? 'xl:px-20 md:px-10'
+          : 'xl:px-40 md:px-20'
+      ">
+      <div class="h-20 flex flex-row items-center justify-between gap-3 md:gap-0">
+        <div class="group flex gap-2 items-center cursor-pointer" routerLink="/">
+          <app-logo></app-logo>
+          <span
+            class="font-mayennesans text-xl text-brown-900 group-hover:text-brown-700 transition-all max-sm:hidden">Real
+            State</span>
+        </div>
+        <app-search class="flex flex-1 items-center justify-center"
+          [ngClass]="{ 'max-md:hidden': currentPage.includes('listings'), 'hidden': hideSearchFilter }"></app-search>
+        <app-user-menu [ngClass]="{ 'max-md:hidden': currentPage.includes('listings') }"></app-user-menu>
+      </div>
+    </app-container>
+  </div>
+  <app-categories [isMainPage]="currentPage === '/'" [isScrolling]="isScrolling"></app-categories>
+</div>

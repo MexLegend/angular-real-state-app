@@ -1,0 +1,57 @@
+<section class="flex flex-col w-full fixed bottom-0 left-0">
+    <div class="relative flex w-full bg-neutral-200 h-[6px]">
+        <div class="flex w-[var(--steper-progress)] h-full bg-black transition-[width] duration-700"
+            [ngClass]="{ '!bg-red-700': currentRoute === stepsRoutes[stepsRoutes.length-1].stepRoute}"
+            [ngStyle]="{'--steper-progress': (stepsRoutes | steper : 'GetProgress' : currentRoute) + '%'}"></div>
+        <div class="absolute h-full w-full flex justify-evenly">
+            <div class="bg-white h-full flex w-[6px]"
+                *ngFor="let item of [].constructor(stepsRoutes | steper : 'GetSteps')"></div>
+        </div>
+    </div>
+    <app-container class="block w-full bg-white">
+        <div class="flex items-center justify-between w-full h-20">
+            <div [ngClass]="{'cursor-not-allowed': currentRoute === stepsRoutes[0].stepRoute || isSaving}">
+                <button class="
+                    rounded-xl 
+                    py-3 
+                    px-5 
+                    text-zinc-900 
+                    font-semibold 
+                    w-full 
+                    max-w-[150px]
+                    hover:bg-neutral-100
+                    active:scale-95
+                    transition
+                    duration-200
+                    underline
+                " [ngClass]="{'pointer-events-none opacity-50': currentRoute === stepsRoutes[0].stepRoute || isSaving}"
+                    (click)="handleStep(false)">
+                    Back
+                </button>
+            </div>
+            <div
+                [ngClass]="{'cursor-not-allowed': (currentRoute !== stepsRoutes[stepsRoutes.length-1].stepRoute && !isFormValid) || isSaving}">
+                <button class="
+                    rounded-xl 
+                    py-3 
+                    px-5 
+                    bg-zinc-900 
+                    text-white 
+                    font-semibold 
+                    w-full 
+                    max-w-[150px]
+                    hover:bg-zinc-700
+                    active:scale-95
+                    transition
+                    duration-200
+                    " [ngClass]="{
+                        'pointer-events-none opacity-50': (currentRoute !== stepsRoutes[stepsRoutes.length-1].stepRoute && !isFormValid) || isSaving,
+                        '!bg-red-700': currentRoute === stepsRoutes[stepsRoutes.length-1].stepRoute
+                    }"
+                    (click)="currentRoute === stepsRoutes[stepsRoutes.length-1].stepRoute ? handleStepperAction(): handleStep(true)">
+                    {{currentRoute !== stepsRoutes[stepsRoutes.length-1].stepRoute ? 'Next' : stepperAction}}
+                </button>
+            </div>
+        </div>
+    </app-container>
+</section>

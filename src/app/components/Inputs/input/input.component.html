@@ -1,0 +1,27 @@
+<div class="relative w-full">
+  <input
+    class="bg-white border-2 disabled:cursor-not-allowed disabled:opacity-70 font-light outline-none p-4 peer pt-6 rounded-md transition w-full"
+    [ngClass]="[
+      errors
+        ? 'border-rose-500 focus:border-rose-500'
+        : 'border-neutral-300 focus:border-black',
+      formatPrice ? 'pl-9' : 'pl-4'
+    ]"
+    [formControl]="formGroupRef.get(formControlName)! | formControlPipe"
+    [required]="required"
+    [id]="id"
+    placeholder=" "
+    [type]="type"
+    autocomplete=""
+  />
+  <label
+    *ngIf="label"
+    class="pointer-events-none -translate-y-3 absolute duration-150 origin-[0] peer-focus:-translate-y-4 peer-focus:scale-75 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 text-md top-5 transform z-10"
+    [ngClass]="[
+      formatPrice ? 'left-9' : 'left-4',
+      errors ? 'text-rose-500' : 'text-zinc-400'
+    ]"
+  >
+    {{ label }}
+  </label>
+</div>

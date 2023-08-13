@@ -1,0 +1,12 @@
+<div (click)="!disabled && fliterByCategory(label!)" class="flex flex-col items-center justify-center gap-1 p-3 border-b-2
+    hover:text-zinc-950 hover:border-b-zintext-zinc-900 transition cursor-pointer" [ngClass]="{
+    'border-b-zinc-950 text-zinborder-b-zinc-700': label === selectedTab && !disabled,
+    'border-transparent': label !== selectedTab,
+    'pointer-events-none border-none': disabled,
+    'text-neutral-500': !customTextColor
+    }">
+    <svg class="h-8 w-8 fill-current stroke-current" aria-hidden="true" focusable="false">
+        <use [attr.href]="'../../../assets/icons/'+icon+'.svg#'+icon"></use>
+    </svg>
+    <div class="font-medium text-sm">{{label}}</div>
+</div>

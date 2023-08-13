@@ -1,0 +1,16 @@
+<button class="relative active:scale-95" (click)="handleClick()"
+    [ngClass]="{'pointer-events-none': disabled}">
+    <div class="rounded-full overflow-clip" [ngClass]="avatarSize">
+        <img class="h-full w-full object-cover" [src]="agent!.image || defaultImage" alt="agent" width="100"
+            height="100">
+    </div>
+    <i *ngIf="icon" class="
+        absolute 
+        -right-1 
+        -bottom-2  
+        text-2xl"
+        [style]="icon.border && 'text-shadow: 2px 0 #f7f4f2, -2px 0 #f7f4f2, 0 2px #f7f4f2, 0 -2px #f7f4f2, 1px 1px #f7f4f2, -1px -1px #f7f4f2, 1px -1px #f7f4f2, -1px 1px #f7f4f2;'"
+        [ngClass]="icon.icon">
+    </i>
+    <ng-container *ngIf="customIcon" [ngTemplateOutlet]="customIcon"></ng-container>
+</button>

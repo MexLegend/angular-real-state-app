@@ -1,0 +1,43 @@
+<div class="relative">
+  <div class="flex flex-row items-center gap-3">
+    <button (click)="onSell()"
+      class="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition active:scale-95">
+      Sell property
+    </button>
+    <div>
+      <button (click)="toggleOpen(); preventCloseOnClick()"
+        class="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full hover:shadow-md active:scale-95 transition"
+        [ngClass]="{ 'shadow-md ': isOpen }">
+        <i class="fas fa-bars"></i>
+        <div class="hidden md:block">
+          <app-avatar [src]="currentUser?.image"></app-avatar>
+        </div>
+      </button>
+      <ng-template [ngTemplateOutlet]="menuContainer"> </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #menuContainer>
+  <div outsideClick (outsideClick)="isOpen = $event" (click)="preventCloseOnClick()"
+    class="z-[999] absolute right-0 top-14 bg-white overflow-hidden text-sm flex shadow-[0_0_8px_4px_rgba(0,0,0,0.07)] rounded-xl w-60 transition-all duration-300 origin-top ease-linear"
+    [ngClass]="{
+      'opacity-100 scale-y-100 pointer-events-auto': isOpen,
+      'opacity-0 scale-y-0 pointer-events-none': !isOpen
+    }">
+    <div class="flex flex-col cursor-pointer h-full w-full py-2">
+      <ng-container *ngIf="currentUser">
+        <app-menu-item label="My favorites" routerLink="/favorites" (click)="toggleOpen()"></app-menu-item>
+        <app-menu-item label="My properties" routerLink="/properties" (click)="toggleOpen()"></app-menu-item>
+        <app-menu-item label="Sell property" (click)="onSell()"></app-menu-item>
+        <hr />
+        <app-menu-item label="Logout" (click)="handleSignOut(); toggleOpen()"></app-menu-item>
+      </ng-container>
+
+      <ng-container *ngIf="!currentUser">
+        <app-menu-item label="Login" (click)="handleloginModal('Login')" [isBold]="true"></app-menu-item>
+        <app-menu-item label="Sign up" (click)="handleloginModal('Register')"></app-menu-item>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>

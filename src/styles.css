@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Prodigysans";
+    src: url("../src/assets/fonts/ProdigySans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Mayennesans";
+    src: url("../src/assets/fonts/Mayenne-Sans.otf");
+}
+
+body {
+    @apply overflow-x-hidden;
+    @apply font-prodigysans;
+    background-color: #f7f4f2;
+}
+
+.mapboxgl-ctrl .mapboxgl-ctrl-attrib {
+    display: none;
+}
+
+.mapboxgl-popup-content {
+    padding: 0 !important;
+    border-radius: 12px !important;
+}
+
+.mapboxgl-popup-close-button {
+    z-index: 10;
+    left: 12px;
+    top: 12px !important;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 100% !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    font-size: 22px;
+}
+
+ngx-dropzone-preview:first-of-type img {
+    @apply object-cover;
+    @apply w-full;
+    @apply h-full;
+}
+
+ngx-dropzone-remove-badge {
+    @apply !opacity-100;
+    @apply z-50;
+    @apply !h-8;
+    @apply !w-8;
+    @apply !bg-white;
+    @apply !opacity-70;
+    @apply transition;
+    @apply duration-200;
+    @apply border;
+    @apply border-gray-100;
+    @apply shadow-md;
+    @apply !right-3;
+    @apply !top-3;
+}
+
+ngx-dropzone-remove-badge:hover {
+    @apply !opacity-100;
+    @apply scale-105;
+}
+
+ngx-dropzone-remove-badge:active {
+    @apply scale-95;
+}
+
+ngx-dropzone-remove-badge>svg>line {
+    @apply !stroke-neutral-950;
+}

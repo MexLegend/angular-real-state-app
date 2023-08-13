@@ -1,0 +1,57 @@
+<ng-template #header>
+    <div class="
+      border-b-[1px]
+      flex 
+      items-center 
+      justify-center
+      p-6
+      relative
+      rounded-t
+  ">
+        <button class="
+      absolute
+      border-0 
+      hover:opacity-70
+      right-9
+      p-1
+      transition
+    " (click)="handleClose()">
+            <i class="fa fa-xmark fa-xl"></i>
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #body>
+    <form [formGroup]="form" class="flex flex-col gap-4 p-6">
+        <div class="flex gap-3 max-md:flex-col max-md:items-center">
+            <app-agent-avatar [agent]="data!.agent" avatarSize="h-16 w-16 max-md:h-24 max-md:w-24"
+                [disabled]="true"></app-agent-avatar>
+            <app-heading title="I’m looking foward to meeting you!"></app-heading>
+        </div>
+        <app-textarea [formGroupRef]="form" formControlName="message" ngDefaultControl id="message" label="Message"
+            [rows]="4"></app-textarea>
+    </form>
+</ng-template>
+
+<ng-template #submitButton>
+    <div class="
+      flex 
+      flex-row 
+      gap-4 
+      items-center 
+      w-full
+    ">
+        <app-button [disabled]="form.invalid" label="Send message" [onClick]="handleSubmit" class="w-full"></app-button>
+    </div>
+</ng-template>
+
+<section class="flex flex-col w-full h-full">
+    <ng-container [ngTemplateOutlet]="header"></ng-container>
+    <div class="flex flex-col flex-1 overflow-y-auto">
+        <ng-container [ngTemplateOutlet]="body"></ng-container>
+
+        <div class="flex flex-col p-6">
+            <ng-container [ngTemplateOutlet]="submitButton"></ng-container>
+        </div>
+    </div>
+</section>

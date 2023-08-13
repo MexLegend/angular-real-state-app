@@ -1,0 +1,64 @@
+<app-container maxWidth="xl:px-40 md:px-20 max-md:!px-6 max-sm:!px-5">
+
+    <div class="flex flex-1 w-full py-16">
+        <ng-container *ngIf="isLoading" [ngTemplateOutlet]="skeleton"></ng-container>
+
+        <ng-container *ngIf="!isLoading">
+
+            <div class="flex flex-col flex-1 gap-5" [ngClass]="[!favoritesListings.length ? 'max-w-[500px]': 'w-full']">
+                <h1 class="font-bold font-mayennesans text-2xl">
+                    Favorites
+                </h1>
+
+                <ng-container *ngIf="!favoritesListings.length"
+                    [ngTemplateOutlet]="emptyFavoritesContent"></ng-container>
+
+                <ng-container *ngIf="favoritesListings.length" [ngTemplateOutlet]="favoritesListContent"></ng-container>
+
+            </div>
+
+        </ng-container>
+    </div>
+
+</app-container>
+
+<ng-template #favoritesListContent>
+    <div class="gap-6 grid grid-cols-4 max-[1128px]:grid-cols-3 max-[950px]:grid-cols-2 max-sm:grid-cols-1 rounded">
+        <app-listing-card *ngFor="let listing of favoritesListings" [data]="listing" [emitReloadListings]="true">
+        </app-listing-card>
+    </div>
+</ng-template>
+
+<ng-template #emptyFavoritesContent>
+    <h4 class="font-semibold text-xl leading-6">Create your first favorites list</h4>
+    <p class="font-medium text-neutral-500">
+        As you browse, click the heart icon to save your favorite properties to
+        Favorites.
+    </p>
+</ng-template>
+
+<ng-template #skeleton>
+    <ngx-skeleton-loader appearance="custom-content" class="w-full">
+        <div class="flex flex-col gap-12">
+            <div class="flex h-7 w-3/12 rounded-[5px] bg-black/10"></div>
+            <div class="
+                gap-6 
+                grid 
+                grid-cols-4 
+                max-[1128px]:grid-cols-3 
+                max-[950px]:grid-cols-2 
+                max-sm:grid-cols-1 
+                rounded 
+                w-full">
+                <div class="flex flex-col gap-2 w-full" *ngFor="let item of [].constructor(4); let i = index">
+                    <div class="group aspect-square overflow-clip rounded-xl w-full mb-3 h-72 bg-black/10"></div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex h-5 w-9/12 rounded-[5px] bg-black/10"></div>
+                        <div class="flex h-5 w-2/4 rounded-[5px] bg-black/10"></div>
+                        <div class="flex h-5 w-5/12 rounded-[5px] bg-black/10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ngx-skeleton-loader>
+</ng-template>

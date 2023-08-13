@@ -1,0 +1,63 @@
+<section class="flex items-center justify-center w-full h-full animate-fade-up">
+    <div class="flex flex-col flex-1 gap-8 max-w-[630px]">
+        <strong class="text-3xl font-semibold">
+            Add some basic information about your dwelling
+        </strong>
+        <span class="text-neutral-500 text-lg">
+            Once you've covered the basics, you can add more details.
+        </span>
+        <div class="relative group flex flex-1 flex-col items-center w-full">
+            <ng-container [ngTemplateOutlet]="featureBox" [ngTemplateOutletContext]="{
+                    $implicit: 'Property size (mts)', 
+                    isCounter: false,
+                    superfix: 2
+                }"></ng-container>
+            <ng-container [ngTemplateOutlet]="featureBox" [ngTemplateOutletContext]="{
+                    $implicit: 'Badrooms', 
+                    isCounter: true, 
+                    controlName: 'roomCount'
+                }"></ng-container>
+            <ng-container [ngTemplateOutlet]="featureBox" [ngTemplateOutletContext]="{
+                    $implicit: 'Bedrooms', 
+                    isCounter: true, 
+                    controlName: 'bathroomCount'
+                }"></ng-container>
+        </div>
+    </div>
+</section>
+
+<ng-template #featureBox let-label let-superfix="superfix" let-isCounter="isCounter" let-controlName="controlName">
+    <div class="flex w-full justify-between items-center h-20 border-b border-b-neutral-200 last:border-b-0">
+        <div class="text-lg font-medium">
+            <span>{{label}}</span>
+            <sup *ngIf="superfix">{{superfix}}</sup>
+        </div>
+        <ng-container *ngIf="!isCounter" [ngTemplateOutlet]="propertyAreaInput"></ng-container>
+        <app-counter *ngIf="isCounter" [formGroupRef]="form" [controlName]="controlName" [value]="form.get(controlName)!.value"></app-counter>
+    </div>
+</ng-template>
+
+<ng-template #propertyAreaInput>
+    <input type="number" class="
+        rounded-lg
+        h-10
+        w-28
+        text-center 
+        font-medium 
+        text-md 
+        cursor-default 
+        flex 
+        items-center 
+        hover:bg-neutral-100
+        border
+        text-gray-700 
+        border-neutral-300
+        hover:border-neutral-600
+        transition
+        duration-200
+        outline-none
+        [appearance:textfield] 
+        [&::-webkit-outer-spin-button]:appearance-none 
+        [&::-webkit-inner-spin-button]:appearance-none" name="custom-input-number" [min]="1"
+        [formControl]="form.get('propertyArea')! | formControlPipe">
+</ng-template>

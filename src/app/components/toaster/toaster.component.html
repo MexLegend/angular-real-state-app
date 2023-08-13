@@ -1,0 +1,64 @@
+<div *ngIf="isOpen" id="toast-success" class="
+    fixed
+    top-11
+    left-[calc(50%-10rem)]
+    flex 
+    items-center 
+    w-full 
+    max-w-xs 
+    px-4 
+    py-3
+    mb-4 
+    border
+    rounded-lg 
+    shadow 
+    z-50" role="alert" [ngClass]="{
+        'text-green-950 bg-green-400/70 border-green-400': type === 'Success',
+        'text-sky-950 bg-sky-500/70 border-sky-500': type === 'Info',
+        'text-rose-950 bg-rose-500/70 border-rose-500': type === 'Error',
+        'text-yellow-950 bg-yellow-500/70 border-yellow-500': type === 'Warning',
+        'animate-jump-in animate-once': isOpen,
+        'animate-jump-out animate-once pointer-events-none': !isOpen
+    }">
+    <div class="
+        inline-flex 
+        items-center 
+        justify-center 
+        flex-shrink-0 
+        w-8 
+        h-8 
+        rounded-full" [ngClass]="{
+            'text-green-500 bg-green-50': type === 'Success',
+            'text-sky-600 bg-sky-50': type === 'Info',
+            'text-rose-600 bg-rose-50': type === 'Error',
+            'text-yellow-600 bg-yellow-50': type === 'Warning'
+        }">
+        <i *ngIf="type === 'Success'" class="fas fa-check"></i>
+        <i *ngIf="type === 'Info'" class="fas fa-info"></i>
+        <i *ngIf="type === 'Warning'" class="fas fa-exclamation-triangle"></i>
+        <i *ngIf="type === 'Error'" class="fas fa-times"></i>
+    </div>
+    <div class="ml-3 text-sm font-semibold">{{message}}</div>
+    <button type="button" class="
+        ml-auto 
+        -mr-4
+        -mt-6 
+        p-1.5 
+        inline-flex 
+        h-8 
+        w-8" (click)="handleOnClick($event)"
+         data-dismiss-target="#toast-success" aria-label="Close" [ngClass]="{
+            'text-green-700 hover:text-green-950': type === 'Success',
+            'text-sky-800 hover:text-sky-950': type === 'Info',
+            'text-rose-800 hover:text-rose-950': type === 'Error',
+            'text-yellow-800 hover:text-yellow-950': type === 'Warning'
+        }">
+        <span class="sr-only">Close</span>
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+        </svg>
+    </button>
+</div>

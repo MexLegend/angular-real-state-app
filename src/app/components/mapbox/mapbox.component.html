@@ -1,0 +1,95 @@
+<div *ngIf="isLoading" class="
+    absolute 
+    top-[190px] 
+    flex 
+    items-center 
+    justify-center 
+    space-x-2 
+    bg-white
+    px-4
+    py-3
+    shadow-lg
+    left-[calc(50%-(72px/2))]
+    rounded-lg">
+    <div class="w-2 h-2 bg-black/70 rounded-full animate-bounce animate-duration-[300ms]"></div>
+    <div class="w-2 h-2 bg-black/70 rounded-full animate-bounce animate-delay-100 animate-duration-[300ms]"></div>
+    <div class="w-2 h-2 bg-black/70 rounded-full animate-bounce animate-delay-200 animate-duration-[300ms]"></div>
+</div>
+
+<ng-container *ngIf="data">
+    <mgl-map class="h-full w-full" [style]="style" [attributionControl]="false" [minZoom]="1" [fitBounds]="fitBounds"
+        [fitBoundsOptions]="fitBoundsOptions">
+
+        <mgl-control mglGeolocate></mgl-control>
+        <mgl-control mglNavigation [showCompass]="false"></mgl-control>
+
+        <mgl-geojson-source #clusterComponent id="listings-tags" [cluster]="true" [clusterRadius]="80"
+            [clusterMaxZoom]="24" [data]="data" [clusterProperties]="clusterProperties" [clusterMinPoints]="10">
+        </mgl-geojson-source>
+
+        <mgl-markers-for-clusters source="listings-tags">
+            <ng-template mglPoint let-feature>
+                <div (click)="handleOpenPopup($event, feature)" class="marker">
+                    <button class="
+                    rounded-full 
+                    bg-white 
+                    text-slate-950 
+                    font-semibold 
+                    text-base
+                    flex
+                    items-center
+                    justify-center
+                    py-1
+                    px-2
+                    shadow-md
+                    gap-1
+                    hover:scale-105
+                    hover:z-50
+                    transition
+                    duration-200
+                    "
+                        [ngClass]="{'!bg-slate-950 text-white': selectedListing?.properties?.['id'] === feature.properties.id}">
+                        <span>${{feature.properties.price}}</span>
+                        <span class="text-sm">MXN</span>
+                    </button>
+                </div>
+            </ng-template>
+            <ng-template mglClusterPoint let-feature>
+                <div (click)="handleOpenPopup($event, feature)" class="marker-cluster">
+                    <button class="
+                    rounded-full 
+                    bg-white 
+                    text-slate-950 
+                    font-semibold 
+                    text-base
+                    flex
+                    items-center
+                    justify-center
+                    py-1
+                    px-2
+                    shadow-md
+                    gap-1
+                    hover:scale-105
+                    hover:z-50
+                    transition
+                    duration-200
+                    " [ngClass]="{
+                        '!bg-slate-950 text-white': 
+                        selectedListing?.properties?.['featuredListing']?.split('_')[1]
+                        === feature.properties.featuredListing.split('_')[1]
+                    }">
+                        <span>${{feature.properties.featuredListing.split("_").pop()}}</span>
+                        <span class="text-sm">MXN</span>
+                    </button>
+                </div>
+            </ng-template>
+        </mgl-markers-for-clusters>
+
+        <mgl-popup #popup *ngIf="selectedListing" [lngLat]="selectedListingCoordinates" [closeButton]="true"
+            [closeOnClick]="true" [closeOnMove]="false" (popupClose)="handleClosePopUp()" [focusAfterOpen]="false"
+            className="!max-w-[320px]" [offset]="10">
+            <app-listing-card [data]="selectedListing.properties!['listing']" [showDetails]="false"></app-listing-card>
+        </mgl-popup>
+
+    </mgl-map>
+</ng-container>

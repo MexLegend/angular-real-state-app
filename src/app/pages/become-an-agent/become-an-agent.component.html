@@ -1,0 +1,18 @@
+<div class="flex flex-col w-full">
+    <app-become-an-agent-navbar></app-become-an-agent-navbar>
+    <div class="relative w-full h-screen flex pt-20 pb-[86px] bg-white">
+        <ng-container *ngIf="isSaving" [ngTemplateOutlet]="savingProgress"></ng-container>
+
+        <app-container id="become-an-agent-container" class="block w-full h-full max-h-full overflow-auto" [expandHeight]="true">
+            <router-outlet></router-outlet>
+        </app-container>
+    </div>
+    <app-become-an-agent-floating-footer class="w-full"></app-become-an-agent-floating-footer>
+</div>
+
+<ng-template #savingProgress>
+    <div class="absolute flex flex-col gap-4 items-center justify-center w-full h-[calc(100%-166px)] bg-white/80 z-50 animate-jump-in">
+        <app-progress-loader size="h-20 w-20" color="text-black"></app-progress-loader>
+        <span class="font-semibold text-xl drop-shadow-sm">Posting property...</span>
+    </div>
+</ng-template>

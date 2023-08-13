@@ -1,0 +1,36 @@
+<section class="flex items-center justify-center w-full h-full animate-fade-up">
+    <div class="flex flex-col flex-1 gap-2 max-w-[630px]">
+        <strong class="text-3xl font-semibold">
+            Now set a price
+        </strong>
+        <span class="text-neutral-500 text-lg">
+            You can change it whenever you want.
+        </span>
+        <div class="
+            relative 
+            flex 
+            flex-1 
+            flex-col 
+            gap-2 
+            items-center 
+            justify-center 
+            w-full 
+            mt-6
+            rounded-xl
+            bg-neutral-100
+            border
+            border-neutral-200
+            p-8">
+            <app-price-counter class="w-full" [formGroupRef]="form" controlName="price" [min]="100000" [max]="100000000"
+                [step]="50"></app-price-counter>
+            <div *ngIf="form.controls['price'].hasError('min') || form.controls['price'].hasError('max')"
+                class="flex flex-1 items-center gap-2 text-xs text-rose-700">
+                <i class="fas fa-exclamation-circle text-base"></i>
+                <span>Enter a base price between $100,000 and $100,000,000</span>
+            </div>
+            <span class="text-neutral-700 text-lg text-center max-w-[360px] mt-5">
+                Properties like yours typically cost between $750,000 and $3,200,000 in your area
+            </span>
+        </div>
+    </div>
+</section>

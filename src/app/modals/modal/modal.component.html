@@ -1,0 +1,33 @@
+<div class="
+    pointer-events-auto
+    flex 
+    w-screen 
+    h-screen 
+    bg-slate-950/50 
+    justify-center 
+    items-center
+    overflow-hidden
+    transition-opacity
+    opacity-0
+    duration-75
+    " [ngClass]="{
+        'opacity-100': showModal,
+        'delay-[250ms]': !showModal
+    }" (click)="closeOnBackdropClick && handleClose()">
+  <section class="
+        relative 
+        w-full
+        shadow-lg 
+        mx-auto 
+        font-lora 
+        animate-duration-[400ms] 
+        animate-delay-[75ms]
+        " [ngClass]="[
+            maxWidth,
+            showModal ? 'animate-jump-in': '',
+            !showModal ? 'duration-[250ms] animate-duration-[250ms] animate-delay-0 animate-jump-out opacity-0': '',
+            isExpanded ? 'bg-slate-950/95 h-full': 'bg-white rounded-lg'
+        ]" (click)="$event.stopPropagation()">
+    <ng-template modalContent></ng-template>
+  </section>
+</div>

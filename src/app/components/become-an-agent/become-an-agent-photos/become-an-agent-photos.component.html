@@ -1,0 +1,28 @@
+<section class="flex items-center justify-center w-full h-max animate-fade-up">
+  <div class="flex flex-col flex-1 gap-6 max-w-[700px]">
+    <ng-container
+      [ngTemplateOutlet]="header"
+      [ngTemplateOutletContext]="{
+        $implicit: 'Add some photos of your house category property',
+        subtitle:
+          'To start, you will need 5 photos. Later you can add more or make changes.'
+      }"
+    ></ng-container>
+
+    <app-drag-and-drop-zone
+      class="w-full h-auto"
+      [files]="files"
+    ></app-drag-and-drop-zone>
+  </div>
+</section>
+
+<ng-template #header let-title let-subtitle="subtitle">
+  <header class="flex flex-col flex-1 gap-2">
+    <strong class="text-3xl font-semibold">
+      {{ title }}
+    </strong>
+    <span class="text-neutral-500 text-lg">
+      {{ subtitle }}
+    </span>
+  </header>
+</ng-template>

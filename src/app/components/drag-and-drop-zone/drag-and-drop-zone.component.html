@@ -1,0 +1,111 @@
+<ngx-dropzone (change)="handleOnSelect($event)" [ngClass]="[zoneClasses, files.length ? '!border-none' : '']"
+    [multiple]="multiple" [accept]="accept" [maxFileSize]="maxFileSize" [disabled]="disabled" [expandable]="expandable"
+    [disableClick]="disableClick" [processDirectoryDrop]="processDirectoryDrop">
+
+    <ngx-dropzone-label>
+        <span class="flex flex-col gap-2 items-center">
+            <i class="far fa-images mb-1 text-6xl"></i>
+            <h3 class="text-gray-900 font-bold text-xl">
+                Drag the photos here
+            </h3>
+            <span class="text-neutral-500 text-base">
+                Choose at least 5 photos
+            </span>
+            <button class="text-base underline font-semibold mt-1 pointer-events-none text-gray-800">
+                Upload photos from your device
+            </button>
+        </span>
+    </ngx-dropzone-label>
+
+    <ngx-dropzone-preview class="!bg-gradient-to-r from-neutral-50 to-neutral-50 !p-0" *ngFor="let file of files"
+        [removable]="!!file.file && !file.isDeleting" 
+        (removed)="hanleOnRemove(file.file!.public_id)">
+
+        <ngx-dropzone-label *ngIf="file.state && file.state !== 'DONE'" class="
+            absolute
+            left-2
+            top-2
+            h-12
+            w-12
+            flex
+            items-center
+            justify-center
+            gap-1
+            float-left
+            rounded-full
+            !m-0
+            !z-50" style="background: conic-gradient(white var(--percentage), black 0deg);"
+            [ngStyle]="{'--percentage': (file.progress! * 3.6) + 'deg'}">
+            <span class="
+                bg-black
+                text-white
+                rounded-full 
+                text-sm
+                inset-0
+                m-1
+                cursor-default
+                absolute
+                flex
+                items-center
+                justify-center">
+                {{file.progress}}
+                <span class="align-super text-[10px]">%</span>
+            </span>
+        </ngx-dropzone-label>
+
+        <ngx-dropzone-label *ngIf="file.isDeleting" class="
+            absolute
+            right-3
+            top-3
+            h-8
+            w-8
+            flex
+            items-center
+            justify-center
+            rounded-full
+            !m-0
+            !z-50">
+            <app-progress-loader size="h-full w-full"></app-progress-loader>
+        </ngx-dropzone-label>
+
+        <ngx-dropzone-label class="flex items-center justify-center w-full h-full !m-0">
+            <img class="w-auto h-full" [ngClass]="{'hidden': !(file.filePreview | imagePreview | async) && !file.file}"
+                [src]="file.file?.url || (file.filePreview | imagePreview | async )"
+                [alt]="file.file?.public_id || file.fileId" width="200" height="300">
+
+            <i class="far fa-image text-5xl text-[rgb(29, 29, 29)] animate-pulse"
+                *ngIf="!file.file?.url && !(file.filePreview | imagePreview | async )"></i>
+
+        </ngx-dropzone-label>
+
+    </ngx-dropzone-preview>
+
+    <ngx-dropzone-preview *ngIf="files.length" class="
+        border 
+        border-dashed
+        !border-gray-500
+        !bg-gradient-to-r 
+        from-transparent 
+        to-trafrom-transparent 
+        !p-0 
+        rounded-md 
+        flex 
+        flex-1 
+        flex-col
+        items-center
+        justify-center
+        max-w-[50%] 
+        w-full
+        h-[228px]
+        overflow-clip
+        min-w-[250px]
+        hover:shadow-[inset_0_0_0_0.5px_black]
+        hover:border-solid
+        hover:border-black
+        ">
+        <ngx-dropzone-label class="flex items-center justify-center flex-col w-full h-full !m-0">
+            <i class="fas fa-plus text-4xl"></i>
+            <span class="text-base font-medium">Add more</span>
+        </ngx-dropzone-label>
+    </ngx-dropzone-preview>
+</ngx-dropzone>

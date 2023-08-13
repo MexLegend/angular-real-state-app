@@ -1,0 +1,115 @@
+<div class="col-span-1 cursor-pointer group" [ngClass]="{ 'shadow-[0_6px_20px_rgba(0,0,0,0.2)]': !showDetails }"
+  [routerLink]="['/listings/' + data!.id]">
+  <div class="relative flex flex-col gap-2 w-full bg-white rounded-xl">
+    <div class="relative">
+
+      <ng-container *ngIf="isLoggedIn() && showFavoritesBtn && !showActions"
+        [ngTemplateOutlet]="favoritesButton"></ng-container>
+
+      <ng-container *ngIf="isLoggedIn() && showActions" [ngTemplateOutlet]="actionsMenu"></ng-container>
+
+      <app-swiper *ngIf="showSwiper && data!.images.length"
+        customClasses="group aspect-square overflow-hidden relative rounded-xl w-full mb-3" [showDetails]="showDetails">
+        <swiper-slide class="w-full h-full" *ngFor="let slide of data!.images">
+          <img class="h-full object-cover transition w-full" [src]="slide.url" alt="Listing" height="300px"
+            width="400px" />
+        </swiper-slide>
+      </app-swiper>
+
+      <div *ngIf="!showSwiper" class="group aspect-square overflow-hidden rounded-xl w-full mb-3">
+        <img class="h-full object-cover transition w-full" [src]="data!.images[0].url" alt="Listing" height="300px"
+          width="400px" />
+      </div>
+
+    </div>
+
+    <div
+      class="relative -top-11 -mb-11 flex flex-col justify-start bottom-0 right-0 bg-white rounded-xl w-full py-4 px-6 z-10">
+      <div class="font-semibold text-base line-clamp-1" [ngClass]="{ 'text-sm': !showDetails }">
+        {{
+        showDetails
+        ? data!.title
+        : data!.location.place +
+        ", " +
+        data!.location.region +
+        ", " +
+        data!.location.country
+        }}
+      </div>
+      <div *ngIf="showDetails" class="font-light text-neutral-500 text-sm line-clamp-1">
+        {{
+        data!.location.place +
+        ", " +
+        data!.location.region +
+        ", " +
+        data!.location.country
+        }}
+      </div>
+      <div *ngIf="showSwiper" class="flex flex-row gap-1 items-center mt-2"
+        [ngClass]="{ 'mt-1 text-base': !showDetails }">
+        <div class="font-semibold" [ngClass]="{ '!font-medium': !showDetails }">
+          ${{ price }}
+          <span class="text-xs">MXN</span>
+        </div>
+      </div>
+      <div *ngIf="showSwiper && showDetails" class="flex flex-row gap-6 items-center mt-3">
+        <div class="flex flex-row items-center gap-2 text-brown-600">
+          <svg class="h-5 w-5 fill-current" aria-hidden="true" focusable="false">
+            <use href="../../../../assets/icons/bed.svg#bed"></use>
+          </svg>
+          <div>{{ data!.features.roomCount }}</div>
+        </div>
+        <div class="flex flex-row items-center gap-2 text-brown-600">
+          <svg class="h-5 w-5 fill-current" aria-hidden="true" focusable="false">
+            <use href="../../../../assets/icons/tub.svg#tub"></use>
+          </svg>
+          <div>{{ data!.features.bathroomCount }}</div>
+        </div>
+        <div class="flex flex-row items-center gap-2 text-brown-600">
+          <svg class="h-5 w-5 fill-current" aria-hidden="true" focusable="false">
+            <use href="../../../../assets/icons/home.svg#home"></use>
+          </svg>
+          <div>{{ data!.features.propertyArea }}mt<sup>2</sup></div>
+        </div>
+      </div>
+      <app-button *ngIf="onAction && actionLabel" [disabled]="disabled" [label]="actionLabel" [onClick]="handleCancel"
+        [small]="true">
+      </app-button>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #favoritesButton>
+  <div class="absolute right-3 top-3 z-40">
+    <app-heart-button [listingId]="data!.id" [emitReloadListings]="emitReloadListings"> </app-heart-button>
+  </div>
+</ng-template>
+
+<ng-template #actionsMenu>
+  <div class="absolute right-3 top-3 z-40">
+    <button [matMenuTriggerFor]="menu" class="
+        rounded-full 
+        bg-white/80 
+        w-8 
+        h-8 
+        transition 
+        duration-200 
+        active:scale-95" (click)="$event.stopPropagation()">
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+
+    <mat-menu #menu="matMenu" [xPosition]="'before'">
+      <ng-template matMenuContent let-items="menuItems">
+        <button class="font-normal" mat-menu-item (click)="handleUpdateListing()">
+          <i class="far fa-edit text-lg mr-2"></i>
+          <span>Editar</span>
+        </button>
+        <button class="font-normal" mat-menu-item (click)="handleDeleteListing()">
+          <i class="far fa-trash-alt text-lg mr-2"></i>
+          <span>Eliminar</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </div>
+</ng-template>

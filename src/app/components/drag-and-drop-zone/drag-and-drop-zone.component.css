@@ -1,0 +1,35 @@
+ngx-dropzone {
+    @apply border;
+    @apply border-gray-500;
+    @apply border-dashed;
+    @apply gap-4;
+}
+
+ngx-dropzone-preview {
+    @apply overflow-clip;
+    @apply !min-w-[250px];
+    @apply !m-0;
+    @apply !rounded-md;
+    @apply border;
+    @apply border-neutral-200;
+    @apply relative;
+}
+
+ngx-dropzone-preview:first-of-type {
+    @apply w-full;
+    @apply !min-w-full;
+    @apply !max-w-full;
+    @apply !h-[480px];
+}
+
+ngx-dropzone-preview:not(:first-of-type) {
+    @apply flex;
+    @apply flex-1;
+    @apply !max-w-[50%];
+    @apply !h-[228px];
+}
+
+.ngx-dz-hovered {
+    @apply border-2;
+    @apply border-black;
+}

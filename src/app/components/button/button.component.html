@@ -1,0 +1,27 @@
+<div [ngClass]="{'cursor-not-allowed' : disabled}">
+  <button [disabled]="disabled" (click)="onClick($event)" class="
+    flex
+    justify-center
+    items-center
+    disabled:pointer-events-none
+    disabled:opacity-70 
+    hover:opacity-80 
+    relative 
+    rounded-lg 
+    transition 
+    w-full
+    active:scale-95
+    " [ngClass]="{
+        'bg-white border-black text-black hover:bg-slate-100': outline,
+        'bg-brown-500 border-brown-500 text-white' : !outline,
+        'border-[1px] font-light py-1 text-sm': small, 
+        'border-2 font-semibold py-3 text-md': !small
+    }">
+    <i *ngIf="icon" class="
+      mr-3
+      text-2xl
+      leading-none
+    " [ngClass]="icon"></i>
+    {{label}}
+  </button>
+</div>

@@ -1,0 +1,22 @@
+<section class="flex items-center justify-center w-full h-full animate-fade-up">
+    <div class="flex flex-col flex-1 gap-2 max-w-[630px]">
+        <strong class="text-3xl font-semibold">
+            Create your description
+        </strong>
+        <span class="text-neutral-500 text-lg">
+            Explain what makes your property special.
+        </span>
+        <div class="relative group flex flex-1 flex-col gap-2 items-start justify-center w-full mt-6">
+            <app-textarea class="w-full text-lg" [formGroupRef]="form" formControlName="description" ngDefaultControl
+                id="description" label="" [rows]="5"
+                placeholder="Live the life you deserve in this magnificent home that captures the essence of modern living."></app-textarea>
+            <span
+                class="font-semibold text-neutral-500 text-sm tracking-wider">{{form.value.description.length}}/500</span>
+            <div *ngIf="form.controls['description'].hasError('maxlength')"
+                class="flex flex-1 items-center gap-2 text-xs text-rose-700">
+                <i class="fas fa-exclamation-circle text-base"></i>
+                <span>The maximum number of characte rs allowed is 500.</span>
+            </div>
+        </div>
+    </div>
+</section>

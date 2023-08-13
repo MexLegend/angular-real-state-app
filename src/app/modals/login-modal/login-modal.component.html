@@ -1,0 +1,88 @@
+<ng-template #header>
+  <div class="border-b-[1px] flex items-center justify-center p-6 relative rounded-t">
+    <button class="absolute border-0 hover:opacity-70 right-9 p-1 transition" (click)="handleClose()">
+      <i class="fa fa-xmark fa-xl"></i>
+    </button>
+    <div class="font-semibold text-lg">
+      {{ loginAction === "Login" ? "Login" : "Register" }}
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #body>
+  <form [formGroup]="form" class="flex flex-col gap-4 p-6">
+    <app-heading title="Welcome back" [subtitle]="
+        loginAction === 'Login'
+          ? 'Login to your account!'
+          : 'Register to your account!'
+      "></app-heading>
+    <app-input *ngIf="loginAction === 'Register'" [formGroupRef]="form" formControlName="name" ngDefaultControl
+      id="name" label="Name" [errors]="errors"></app-input>
+    <app-input [formGroupRef]="form" formControlName="email" ngDefaultControl id="email" label="Email" [errors]="errors"
+      [required]="true">
+    </app-input>
+    <app-input [formGroupRef]="form" formControlName="password" ngDefaultControl id="password" label="Password"
+      type="password" [errors]="errors" [required]="true"></app-input>
+  </form>
+</ng-template>
+
+<ng-template #successRegister>
+  <div class="flex flex-col w-full p-6 justify-center items-center">
+    <div class="rounded-full h-28 w-28 bg-brown-500 text-white flex items-center justify-center">
+      <i class="fas fa-check text-6xl"></i>
+    </div>
+    <app-heading class="mt-12 mb-16" title="Successfully Registered"
+      subtitle="Now you can login to your account"></app-heading>
+    <app-button label="Login" (click)="handleModalAction('Login')" class="w-full"></app-button>
+  </div>
+</ng-template>
+
+<ng-template #submitButton>
+  <div class="flex flex-row gap-4 items-center w-full">
+    <app-button [disabled]="form.invalid" label="Continue" [onClick]="handleSubmit" class="w-full"></app-button>
+  </div>
+</ng-template>
+
+<ng-template #loginFooter>
+  <div class="flex flex-col gap-4 mt-3">
+    <hr />
+    <div class="text-neutral-500 text-center mt-4 font-light">
+      <p>
+        First time using Real State?
+        <span (click)="handleModalAction('Register')" class="text-neutral-800 cursor-pointer hover:underline">
+          Create an account</span>
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #registerFooter>
+  <div class="flex flex-col gap-4 mt-3">
+    <hr />
+    <div class="text-neutral-500 text-center mt-4 font-light">
+      <p>
+        Already have an account?
+        <span (click)="handleModalAction('Login')" class="text-neutral-800 cursor-pointer hover:underline">
+          Login</span>
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<section class="flex flex-col w-full h-full">
+  <ng-container [ngTemplateOutlet]="header"></ng-container>
+  <div class="flex flex-col flex-1 overflow-y-auto">
+    <ng-container [ngTemplateOutlet]="showRegisterSuccessMessage ? successRegister : body"></ng-container>
+
+    <app-form-error-box *ngIf="authError" class="px-6"
+      label="Wrong credentials. Please enter a valid email and password">
+    </app-form-error-box>
+
+    <div class="flex flex-col gap-2 p-6" *ngIf="!showRegisterSuccessMessage">
+      <ng-container [ngTemplateOutlet]="submitButton"></ng-container>
+      <ng-container [ngTemplateOutlet]="
+          loginAction === 'Login' ? loginFooter : registerFooter
+        "></ng-container>
+    </div>
+  </div>
+</section>

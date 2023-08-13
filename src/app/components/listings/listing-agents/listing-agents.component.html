@@ -1,0 +1,39 @@
+<section id="listingAgent" class="mt-8 flex flex-col w-full border-t border-t-brown-100 pt-5">
+    <div class="grid grid-cols-2 gap-32 max-md:grid-cols-1 max-md:gap-10">
+        <div class="flex flex-col flex-1">
+            <div class="flex gap-6 items-center w-full">
+                <app-agent-avatar [agent]="agent" avatarSize="h-16 w-16"
+                    [icon]="{icon: 'fas fa-medal text-red-700', border:true}">
+                </app-agent-avatar>
+                <div class="flex flex-col flex-1 gap-1 ">
+                    <p class="text-xl font-semibold">Agent: {{agent!.name}}</p>
+                    <span class="text-brown-500 text-sm">Registered in {{agent!.createdAt! | safeDate | dfnsFormat: 'LLLL yyyy'}}</span>
+                </div>
+            </div>
+            <div class="flex gap-6 mt-5 w-full">
+                <app-agent-tag tag="Verified Identity" [customIcon]="agentTagIcon"></app-agent-tag>
+                <app-agent-tag tag="Featured Agent" icon="fas fa-medal"></app-agent-tag>
+            </div>
+            <div class="flex gap-2 flex-col mt-5 w-full">
+                <span class="font-semibold">A little about me</span>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit eius nulla tempora magnam quod expedita
+                    omnis
+                    nisi porro rerum vel tempore tenetur, corporis dolore recusandae animi atque quis eum ad.
+                </p>
+            </div>
+            <div class="flex gap-2 flex-col mt-5 w-full">
+                <span class="font-semibold">Sebastian is a featured agent</span>
+                <p>The featured agents are agents with a lot of experience in selling, who brings to their clients
+                    the experience of buy not just a house, but a home.
+                </p>
+            </div>
+        </div>
+        <app-agent-contact-box [agentInfo]="agent"></app-agent-contact-box>
+    </div>
+</section>
+
+<ng-template #agentTagIcon>
+    <svg class="h-4 w-4 fill-current" aria-hidden="true" focusable="false">
+        <use href="../../../../assets/icons/verified.svg#verified"></use>
+    </svg>
+</ng-template>

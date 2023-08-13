@@ -1,0 +1,77 @@
+<nav class="
+    fixed 
+    w-full 
+    h-20 
+    bg-white 
+    top-0 
+    left-0 
+    z-[999] 
+    transition-all 
+    duration-300 
+    shadow-sm 
+    border-b-[1px] 
+    border-b-brown-100
+    opacity-0
+    pointer-events-none
+    max-md:bg-transparent
+    max-md:border-0
+    max-md:pointer-events-none
+    max-md:opacity-100
+    " [ngClass]="{
+        'opacity-100 pointer-events-auto': show
+    }">
+    <app-container maxWidth="xl:px-40 md:px-20 flex" [expandHeight]="true" [ngClass]="{'hidden': !show}">
+        <ul class="flex gap-6 items-center text-brown-950 font-medium text-base h-20 max-md:hidden">
+            <li class="
+                flex
+                cursor-pointer 
+                justify-center 
+                items-center 
+                h-full 
+                border-b-4 
+                border-b-transparent
+                transition 
+                hover:border-b-brown-900" (click)="handleClick('listingHero')">
+                Photos
+            </li>
+            <li class="
+                flex
+                cursor-pointer 
+                justify-center 
+                items-center
+                h-full 
+                border-b-4 
+                border-b-transparent 
+                transition 
+                hover:border-b-brown-900" (click)="handleClick('listingDetails')">
+                Details
+            </li>
+            <li class="
+                flex
+                cursor-pointer 
+                justify-center 
+                items-center
+                h-full 
+                border-b-4 
+                border-b-transparent 
+                transition 
+                hover:border-b-brown-900" (click)="handleClick('listingAmenities')">
+                Amenities
+            </li>
+            <li class="
+                flex
+                cursor-pointer 
+                justify-center 
+                items-center
+                h-full 
+                border-b-4 
+                border-b-transparent 
+                transition 
+                hover:border-b-brown-900" (click)="handleClick('listingLocation')">
+                Location
+            </li>
+        </ul>
+        <app-listing-actions class="flex justify-end items-center h-full w-full"
+            [isMobile]="true"></app-listing-actions>
+    </app-container>
+</nav>

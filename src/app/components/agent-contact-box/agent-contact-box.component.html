@@ -1,0 +1,16 @@
+<div class="flex flex-col flex-1 gap-3">
+  <p class="font-semibold" [ngClass]="isSticky ? 'font-mayennesans text-2xl' : 'text-xl'">
+    Contact details
+  </p>
+  <span>{{ agentInfo?.phone }}</span>
+  <span>{{ agentInfo?.email }}</span>
+  <div class="flex gap-3 w-full my-3">
+    <app-icon-button icon="fab fa-linkedin-in"></app-icon-button>
+    <app-icon-button icon="fab fa-instagram"></app-icon-button>
+    <app-icon-button icon="fab fa-twitter"></app-icon-button>
+    <app-icon-button icon="fab fa-facebook-f"></app-icon-button>
+  </div>
+  <div class="max-w-xs">
+    <app-button label="Contact Agent" (click)="handleOpenModal()"></app-button>
+  </div>
+</div>

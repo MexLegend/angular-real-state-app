@@ -1,0 +1,49 @@
+<section id="listingDetails" class="flex flex-col">
+  <ng-container [ngTemplateOutlet]="header"></ng-container>
+  <ng-container [ngTemplateOutlet]="body"></ng-container>
+</section>
+
+<ng-template #header>
+  <div class="mb-7 flex w-full">
+    <div class="flex flex-col flex-1">
+      <strong class="text-2xl text-brown-600"
+        >{{listing!.categories.join(", ")}}. Agente: {{ listing!.user.name }}</strong
+      >
+      <p>Some text here</p>
+    </div>
+    <app-agent-avatar
+      [agent]="listing!.user"
+      [icon]="{ icon: 'fas fa-medal text-red-700', border: true }"
+      [navigate]="false"
+    >
+    </app-agent-avatar>
+  </div>
+</ng-template>
+
+<ng-template #body>
+  <div class="flex w-full border-t border-t-brown-100 pt-5">
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum ducimus
+      esse vel accusamus facere alias nihil obcaecati? Dolorum magnam dolores,
+      reiciendis sapiente fuga, dolor cumque tenetur aperiam nisi nihil
+      repellendus numquam harum odio qui ut eius saepe voluptates, molestias
+      minus vitae eveniet aliquid modi.
+      <br /><br />
+      Repellat, expedita? Adipisci expedita nulla, maiores nam animi modi cum
+      asperiores rerum cumque illum voluptatem ratione repellat? Maiores fugiat,
+      ratione maxime velit, eius tempore, quae cumque atque totam consequuntur
+      modi hic nobis aliquam. Consequuntur tenetur sunt rem atque nam cumque
+      quo, enim modi in voluptatum expedita quam harum facere aliquid laborum ut
+      quas dicta ea eaque, impedit consequatur earum temporibus? Recusandae at
+      quas voluptate.
+      <br /><br />
+      Minus, ad. Pariatur, veritatis id. Dignissimos laudantium maiores ut, cum
+      labore optio rem perspiciatis quisquam accusantium molestiae harum vitae
+      quae cupiditate placeat possimus cumque et similique. A, maxime excepturi?
+      Fuga, voluptates animi officiis, fugiat debitis aliquid possimus deserunt
+      neque, sequi natus distinctio? Illum, asperiores nam. Reiciendis
+      consectetur veniam modi, accusantium delectus soluta dolores commodi ex
+      numquam possimus architecto magnam corrupti!
+    </p>
+  </div>
+</ng-template>

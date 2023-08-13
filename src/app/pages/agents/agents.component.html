@@ -1,0 +1,149 @@
+<ng-container *ngIf="!agent">
+  <div class="flex w-full h-[800px] justify-center items-center">
+    <div
+      class="w-20 h-20 rounded-full border border-red-600 animate-spin"
+    ></div>
+  </div>
+</ng-container>
+<app-container *ngIf="agent" maxWidth="xl:px-40 md:px-20">
+  <div class="relative flex flex-1 py-12 max-md:flex-col">
+    <div class="flex flex-col gap-8 max-md:mb-8">
+      <app-sticky-card
+        customClasses="w-full bg-white top-32 md:mr-20 md:w-[350px] flex items-center justify-center shadow-md"
+      >
+        <ng-container [ngTemplateOutlet]="profileCard"></ng-container>
+      </app-sticky-card>
+      <app-sticky-card
+        customClasses="w-full md:mr-20 md:w-[350px] flex items-center justify-center border border-brown-200"
+      >
+        <app-agent-contact-box
+          [isSticky]="true"
+          [agentInfo]="agent"
+        ></app-agent-contact-box>
+      </app-sticky-card>
+    </div>
+    <div class="w-full flex flex-col flex-1 md:max-w-[calc(100%-446px)] mt-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="flex flex-col gap-2">
+          <ng-container
+            [ngTemplateOutlet]="profileHeader"
+            [ngTemplateOutletContext]="{
+              $implicit:
+                agent.name!.split(' ', 1) + ' has not updated his profile yet'
+            }"
+          ></ng-container>
+          <p>
+            {{ agent.name!.split(" ", 1) }}'s interests, fun facts, and other
+            highlights will appear here once you add them.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-8 mt-8 pt-8 border-t border-t-brown-100">
+        <div class="flex flex-col gap-2">
+          <ng-container
+            [ngTemplateOutlet]="profileHeader"
+            [ngTemplateOutletContext]="{
+              $implicit: agent.name!.split(' ', 1) + '\'s Reviews'
+            }"
+          ></ng-container>
+          <div class="flex flex-col mt-6 w-full">
+            <ng-container [ngTemplateOutlet]="reviewsSwiper"></ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-8 mt-8 pt-8 border-t border-t-brown-100">
+        <div class="flex flex-col gap-2">
+          <ng-container
+            [ngTemplateOutlet]="profileHeader"
+            [ngTemplateOutletContext]="{
+              $implicit:
+                'Other Properties Managed By ' + agent.name!.split(' ', 1)
+            }"
+          ></ng-container>
+          <div class="flex flex-col mt-6 w-full">
+            <ng-container [ngTemplateOutlet]="listingsSwiper"></ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-container>
+<app-footer></app-footer>
+
+<ng-template #profileCard>
+  <div class="flex justify-evenly flex-1">
+    <div class="flex flex-col flex-1 items-center gap-1">
+      <app-agent-avatar
+        [agent]="agent"
+        [disabled]="true"
+        [customIcon]="profileIcon"
+        avatarSize="h-24 w-24"
+      ></app-agent-avatar>
+      <div class="flex flex-col flex-1 gap-2 items-center">
+        <strong class="text-2xl leading-none font-mayennesans">{{
+          agent!.name!.split(" ", 1)
+        }}</strong>
+        <app-agent-tag
+          tag="Featured Agent"
+          icon="fas fa-medal"
+          customClasses="leading-none text-brown-600"
+        ></app-agent-tag>
+      </div>
+    </div>
+    <div class="flex flex-col w-24 items-start gap-1">
+      <div class="flex flex-col w-full mb-1">
+        <strong class="text-xl font-mayennesans text-brown-600">594</strong>
+        <span class="text-xs">Reviews</span>
+      </div>
+      <div class="flex flex-col w-full border-t border-t-brown-100 pt-3 pb-1">
+        <div class="flex gap-2 items-center text-brown-600">
+          <strong class="text-xl font-mayennesans">4.88</strong>
+          <i class="fas fa-star text-sm"></i>
+        </div>
+        <span class="text-xs">Rating</span>
+      </div>
+      <div class="flex flex-col w-full border-t border-t-brown-100 pt-3">
+        <strong class="text-xl font-mayennesans text-brown-600">5</strong>
+        <span class="text-xs">Years as agent</span>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #profileIcon>
+  <div
+    class="absolute rounded-full bg-red-700 -right-1 bottom-0 h-8 w-8 flex justify-center items-center"
+  >
+    <svg
+      class="h-4 w-4 fill-current text-white"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <use href="../../../../assets/icons/verified.svg#verified"></use>
+    </svg>
+  </div>
+</ng-template>
+
+<ng-template #profileHeader let-label>
+  <strong class="font-semibold text-xl">{{ label }}</strong>
+</ng-template>
+
+<ng-template #reviewsSwiper let-slides>
+  <app-swiper [innerActions]="false" [showPagination]="false">
+    <swiper-slide class="max-w-[360px]" *ngFor="let review of reviews">
+      <app-review [review]="review"></app-review>
+    </swiper-slide>
+  </app-swiper>
+</ng-template>
+
+<ng-template #listingsSwiper let-slides>
+  <app-swiper [innerActions]="false" [showPagination]="false">
+    <swiper-slide class="max-w-[236px]" *ngFor="let listing of listings">
+      <app-listing-card
+        [data]="listing"
+        [showFavoritesBtn]="false"
+        [showSwiper]="false"
+      ></app-listing-card>
+    </swiper-slide>
+  </app-swiper>
+</ng-template>

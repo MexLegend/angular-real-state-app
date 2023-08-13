@@ -1,0 +1,47 @@
+<app-sticky-card
+  customClasses="top-32 ml-24 w-[400px] bg-white shadow-md max-lg:w-[350px] max-lg:ml-16"
+>
+  <div class="flex items-center">
+    <div class="flex flex-col gap-1 flex-1">
+      <p>{{ listing!.title }}</p>
+      <strong class="font-mayennesans font-bold text-2xl"
+        >${{ listing!.price }}</strong
+      >
+    </div>
+    <button
+      class="rounded-lg border border-brown-100 w-10 h-10 hover:bg-brown-50/50 active:scale-95"
+    >
+      <i class="fas fa-map-marker-alt text-brown-500 text-lg"></i>
+    </button>
+  </div>
+  <div class="my-5 grid grid-cols-[1fr_1fr_2fr] gap-3">
+    <div
+      class="flex items-center justify-center text-brown-600 gap-4 rounded-lg border border-brown-100 h-[50px]"
+    >
+      <svg class="h-6 w-6 fill-current" aria-hidden="true" focusable="false">
+        <use href="../../../../assets/icons/bed.svg#bed"></use>
+      </svg>
+      <div>{{ listing!.features.roomCount }}</div>
+    </div>
+    <div
+      class="flex items-center justify-center text-brown-600 gap-4 rounded-lg border border-brown-100 h-[50px]"
+    >
+      <svg class="h-6 w-6 fill-current" aria-hidden="true" focusable="false">
+        <use href="../../../../assets/icons/tub.svg#tub"></use>
+      </svg>
+      <div>{{ listing!.features.bathroomCount }}</div>
+    </div>
+    <div
+      class="flex items-center justify-center text-brown-600 gap-4 rounded-lg border border-brown-100 h-[50px]"
+    >
+      <svg class="h-6 w-6 fill-current" aria-hidden="true" focusable="false">
+        <use href="../../../../assets/icons/home.svg#home"></use>
+      </svg>
+      <div>{{ listing!.features.propertyArea }}mt<sup>2</sup></div>
+    </div>
+  </div>
+  <app-button
+    label="Contact Agent"
+    (click)="handleClick()"
+  ></app-button>
+</app-sticky-card>

@@ -1,0 +1,55 @@
+<div class="group relative w-full" [ngClass]="[customClasses, !showDetails ? 'max-h-[230px] min-w-[320px]' : '']">
+    <ng-container [ngTemplateOutlet]="actions"></ng-container>
+    <swiper-container fmSwiper [config]="config" init="false" class="w-full h-full" #swiperRef>
+        <ng-content></ng-content>
+    </swiper-container>
+</div>
+
+<ng-template #actions>
+    <div *ngIf="!swiper?.isLocked" class="flex w-full items-center pointer-events-none" [ngClass]="{
+        'absolute px-4 top-[calc(50%-16px)] left-0 justify-between': innerActions,
+        'justify-end gap-2 mb-8': !innerActions,
+        'md:h-full md:!top-0 max-md:opacity-0': expandedControls
+    }">
+        <button *ngIf="swiperRef" class="
+            group/leftNav
+            z-10 
+            transition-all
+            duration-200
+            h-8 
+            w-8 
+            bg-white/80 
+            rounded-full 
+            opacity-0 
+            pointer-events-none
+        " [ngClass]="{
+            'md:!h-full md:!w-16 md:!bg-transparent max-sm:!w-10 max-sm:!h-10 !opacity-100 max-md:!pointer-events-none': expandedControls,
+            'group-hover:opacity-100 group-hover:pointer-events-auto' : !swiper?.isBeginning  && innerActions,
+            'pointer-events-auto opacity-100 border border-brown-200' : !innerActions,
+            'opacity-50 cursor-not-allowed' : swiper?.isBeginning && !innerActions
+        }" (click)="!swiper?.isBeginning && handlePrevSlide($event, swiperRef)">
+            <i class="fas fa-chevron-left text-brown-900"
+                [ngClass]="{'md:!text-white/50 md:group-hover/leftNav:!text-white md:text-3xl' : expandedControls}"></i>
+        </button>
+        <button *ngIf="swiperRef" class="
+            group/rightNav
+            z-10
+            transition-all
+            duration-200
+            h-8 
+            w-8 
+            bg-white/80 
+            rounded-full 
+            opacity-0 
+            pointer-events-none
+    " [ngClass]="{
+        'md:!h-full md:!w-16 md:!bg-transparent max-sm:!w-10 max-sm:!h-10 !opacity-100 max-md:!pointer-events-none': expandedControls,
+        'group-hover:opacity-100 group-hover:pointer-events-auto' : !swiper?.isEnd && innerActions,
+        'pointer-events-auto opacity-100 border border-brown-200' : !innerActions,
+        'opacity-50 cursor-not-allowed' : !innerActions && swiper?.isEnd,
+    }" (click)="!swiper?.isEnd && handleNextSlide($event, swiperRef)">
+            <i class="fas fa-chevron-right text-brown-900"
+                [ngClass]="{'md:!text-white/50 md:group-hover/rightNav:!text-white md:text-3xl' : expandedControls}"></i>
+        </button>
+    </div>
+</ng-template>

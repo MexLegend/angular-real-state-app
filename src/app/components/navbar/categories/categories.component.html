@@ -1,0 +1,16 @@
+<ng-container *ngIf="isMainPage">
+    <app-container>
+        <div class="
+          flex 
+          flex-row 
+          items-center 
+          justify-between
+          overflow-x-auto
+          transition-all
+          duration-300
+        " [ngClass]="{'pt-4': !isScrolling && !isDrawerOpen}">
+            <app-category-box *ngFor="let item of categories" [label]="item.label" [icon]="item.icon"
+                [selectedTab]="selectedTab"></app-category-box>
+        </div>
+    </app-container>
+</ng-container>

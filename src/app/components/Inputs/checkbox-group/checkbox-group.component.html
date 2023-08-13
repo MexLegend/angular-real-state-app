@@ -1,0 +1,48 @@
+<ul class="grid w-full gap-6 md:grid-cols-3" [formGroup]="formGroupRef">
+    <li class="flex flex-1 flex-col rounded-xl gap-2 h-24" [formGroupName]="control.key"
+        *ngFor="let control of formGroupRef.controls | keyvalue">
+        <input type="checkbox" [id]="control.key" class="hidden peer" formControlName="value"
+            [value]="control.value.value[checkboxElementName]">
+        <label [for]="control.key" class="
+            flex 
+            flex-col 
+            items-center 
+            justify-center 
+            w-full 
+            h-full
+            p-5 
+            border
+            border-neutral-200 
+            text-neutral-500
+            rounded-lg 
+            cursor-pointer 
+            transition
+            active:scale-95
+            peer-checked:border-brown-900
+            peer-checked:bg-brown-50
+            peer-checked:text-brown-900
+            peer-checked:border-2
+            hover:bg-neutral-100">
+            <div class="block">
+                <div class="
+                    flex 
+                    flex-col 
+                    items-center 
+                    justify-center 
+                    gap-1 
+                    p-3 
+                    hover:text-zinc-950 
+                    text-zinc-900 
+                    transition 
+                    cursor-pointer">
+                    <svg class="h-8 w-8 fill-current stroke-current" aria-hidden="true" focusable="false">
+                        <use
+                            [attr.href]="'../../../assets/icons/'+control.value.value[checkboxElementName].icon+'.svg#'+control.value.value[checkboxElementName].icon">
+                        </use>
+                    </svg>
+                    <div class="font-medium text-base">{{control.value.value[checkboxElementName].label}}</div>
+                </div>
+            </div>
+        </label>
+    </li>
+</ul>

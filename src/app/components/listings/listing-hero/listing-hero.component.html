@@ -1,0 +1,68 @@
+<section class="flex flex-col gap-2 w-full h-min">
+    <div class="relative grid grid-cols-[5fr_3fr] gap-2 overflow-clip max-lg:grid-cols-1">
+        <button class="
+            absolute 
+            flex 
+            items-center 
+            justify-center 
+            gap-3 
+            bottom-6
+            right-6
+            py-2
+            px-5 
+            bg-white/90
+            text-brown-800
+            transition
+            rounded-xl
+            hover:bg-brown-100/90
+            active:scale-95
+            z-10
+            " (click)="handleHeroModal()">
+            <app-logo logoSize="h-6 w-6" logoColor="text-800"></app-logo>
+            <span class="font-semibold">View all photos</span>
+        </button>
+        <button
+            class="group h-full max-h-[360px] lg:max-h-[370px] 3xl:max-h-[390px] w-full max-w-full overflow-hidden rounded-xl"
+            (click)="handleHeroModal(0)">
+            <img class="
+            w-full 
+            h-full 
+            bg-white
+            bg-cover 
+            transition 
+            group-hover:scale-110
+            group-hover:brightness-75
+            " [src]="images[0].url" alt="main-hero-img" width="100%%" height="auto">
+        </button>
+        <button
+            class="w-full max-w-full h-full max-h-[360px] lg:max-h-[370px] 3xl:max-h-[390px] group overflow-hidden rounded-xl max-lg:hidden"
+            (click)="handleHeroModal(1)">
+            <img class="
+            w-full 
+            h-full 
+            bg-black 
+            bg-cover 
+            transition 
+            group-hover:scale-110
+            group-hover:brightness-75
+            " [src]="images[1].url" alt="secondary-hero-img" width="100%%" height="auto">
+        </button>
+    </div>
+    <div class="grid gap-1 rounded-xl overflow-clip items-start justify-start h-32" [ngClass]="{
+        'grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-3': heroImagesList.length >= 6,
+        'grid-cols-5 max-lg:grid-cols-5 max-md:grid-cols-4': heroImagesList.length === 5,
+        'grid-cols-4 max-md:grid-cols-3': heroImagesList.length === 4,
+        'grid-cols-3': heroImagesList.length === 3
+    }">
+        <button class="group h-full max-w-full overflow-hidden" [ngClass]="{
+            'max-lg:hidden': i === 5,
+            'max-md:hidden': i === 5 || i === 4,
+            'max-sm:hidden': i === 5 || i === 4 || i === 3
+
+        }" *ngFor="let image of heroImagesList; let i = index" (click)="
+            handleHeroModal(i + 2)">
+            <img class=" h-full object-cover transition w-full group-hover:brightness-75
+            group-hover:scale-110 " [src]="image.url" alt="list-hero-img" width="400px" height="300px">
+        </button>
+    </div>
+</section>

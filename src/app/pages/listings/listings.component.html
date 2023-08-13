@@ -1,0 +1,66 @@
+<app-container maxWidth="xl:px-40 md:px-20 max-md:!px-6 max-sm:!px-5">
+  <ng-container *ngIf="!listing">
+    <div class="flex w-full h-[800px] justify-center items-center">
+      <div
+        class="w-20 h-20 rounded-full border border-red-600 animate-spin"
+      ></div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="listing">
+    <app-listing-navbar [show]="showListingNavbar"></app-listing-navbar>
+    <div id="listingHero" class="pt-8">
+      <app-heading
+        [title]="listing.title"
+        titleSize="text-2xl leading-6"
+      ></app-heading>
+      <div class="flex justify-between items-center text-sm mb-3">
+        <div
+          class="flex items-center max-md:flex-col-reverse max-md:gap-3 max-md:items-start"
+        >
+          <app-agent-tag
+            tag="Featured Agent"
+            icon="fas fa-medal"
+          ></app-agent-tag>
+          <div
+            class="flex items-center justify-center relative w-4 h-full font-semibold text-slate-600 max-md:hidden"
+          >
+            <span class="relative -top-[3px]">.</span>
+          </div>
+          <a href="/" class="underline font-semibold">
+            {{
+              listing.location.place +
+                ", " +
+                listing.location.region +
+                ", " +
+                listing.location.country
+            }}
+          </a>
+        </div>
+        <app-listing-actions
+          class="max-md:hidden"
+          [listingId]="listing.id"
+        ></app-listing-actions>
+      </div>
+      <app-listing-hero
+        [listingId]="listing.id"
+        [images]="listing.images"
+      ></app-listing-hero>
+    </div>
+    <div #listingInfo id="listingInfo" class="flex py-12">
+      <div class="flex flex-col w-full">
+        <app-listing-details [listing]="listing"></app-listing-details>
+        <app-listing-services
+          [amenities]="listing.amenities"
+        ></app-listing-services>
+      </div>
+      <app-listing-sticky
+        class="max-md:hidden"
+        [listing]="listing"
+      ></app-listing-sticky>
+    </div>
+    <app-listing-location></app-listing-location>
+    <app-listing-agents [agent]="listing.user"></app-listing-agents>
+  </ng-container>
+</app-container>
+<app-floating-footer *ngIf="listing" [listing]="listing"></app-floating-footer>
+<app-footer [bottomNavSpacing]="true"></app-footer>

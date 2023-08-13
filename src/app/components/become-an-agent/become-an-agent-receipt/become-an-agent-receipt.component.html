@@ -1,0 +1,88 @@
+<section class="flex items-center justify-center w-full h-full animate-fade-up">
+    <div class="flex flex-col flex-1 gap-2 max-w-[850px]">
+        <strong class="text-3xl font-semibold">
+            Check your ad
+        </strong>
+        <span class="text-neutral-500 text-lg">
+            This is what potential buyers will see. Ensure that every aspect shines to make a lasting impression.
+        </span>
+        <div class="
+            relative 
+            flex 
+            flex-1 
+            gap-20 
+            items-center 
+            justify-center 
+            w-full 
+            mt-6">
+            <button class="
+                flex 
+                flex-col
+                gap-3
+                w-full 
+                max-w-[40vw] 
+                h-[400px] 
+                rounded-xl 
+                shadow-[0_2px_15px_3px_rgba(0,0,0,0.15)]
+                bg-white 
+                border
+                border-neutral-100
+                p-4
+                ">
+                <div class="rounded-xl flex flex-1 overflow-clip group h-[300px] w-full relative">
+                    <div class="
+                        absolute 
+                        left-4 
+                        top-4 
+                        rounded 
+                        bg-white 
+                        px-2 
+                        text-slate-900 
+                        z-10 
+                        pointer-events-none 
+                        font-semibold 
+                        shadow-md">
+                        <span>Show preview</span>
+                    </div>
+                    <img class="group-hover:scale-105 transition duration-200 object-cover w-full h-full"
+                        [src]="stepperData!.images[0].url" alt="full_preview" width="300" height="300">
+                </div>
+                <div class="flex w-full justify-between pb-1">
+                    <div class="flex flex-1 items-start flex-col gap-1">
+                        <span>{{stepperData!.title}}</span>
+                        <strong>${{stepperData!.price | safePrice}}</strong>
+                    </div>
+                    <span>New</span>
+                </div>
+            </button>
+            <div class="flex flex1 flex-col gap-7">
+                <h3 class="text-2xl font-semibold">And now what?</h3>
+                <ng-container [ngTemplateOutlet]="featureBox" [ngTemplateOutletContext]="{
+                    $implicit: 'fas fa-clipboard-check',
+                    title: 'Confirm some details and post the ad',
+                    subtitle: 'If you need to verify your identity or register your propert with local authorities, we will contact you.'
+                }"></ng-container>
+                <ng-container [ngTemplateOutlet]="featureBox" [ngTemplateOutletContext]="{
+                    $implicit: 'fas fa-calendar',
+                    title: 'Set up your calendar',
+                    subtitle: 'Select the dates available in your property. The ad will be visible 24 hours after its publication.'
+                }"></ng-container>
+                <ng-container [ngTemplateOutlet]="featureBox" [ngTemplateOutletContext]="{
+                    $implicit: 'fas fa-pencil',
+                    title: 'Adjust settings',
+                    subtitle: 'Establish your property guidelines, define your terms, select preferred payment methods, and more to ensure a seamless selling process.'
+                }"></ng-container>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #featureBox let-icon let-title="title" let-subtitle="subtitle">
+    <div class="flex flex-1 gap-5">
+        <i class="text-3xl" [ngClass]="icon"></i>
+        <div class="flex flex-1 flex-col">
+            <span class="text-lg font-semibold">{{title}}</span>
+            <p class="text-neutral-500 leading-tight text-sm">{{subtitle}}</p>
+        </div>
+    </div>
+</ng-template>

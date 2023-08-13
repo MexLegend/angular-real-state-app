@@ -1,0 +1,12 @@
+<div class="flex gap-2 font-semibold">
+    <button class="flex gap-2 items-center rounded-lg transition hover:bg-brown-100 py-2 px-4 active:scale-95"
+        [ngClass]="{'pointer-events-auto !rounded-full px-2 h-10 w-10 justify-center': isMobile}">
+        <i class="far fa-share-square text-base"></i>
+        <span class="underline tracking-wider" [ngClass]="{'hidden': isMobile}">Share</span>
+    </button>
+    <button class="flex gap-2 items-center rounded-lg transition hover:bg-brown-100 py-2 px-4 active:scale-95"
+        [ngClass]="{'pointer-events-auto !rounded-full px-2 h-10 w-10 justify-center': isMobile}">
+        <i class="far fa-heart text-base"></i>
+        <span class="underline tracking-wider" [ngClass]="{'hidden': isMobile}">Save</span>
+    </button>
+</div>

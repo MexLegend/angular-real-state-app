@@ -1,0 +1,29 @@
+<section class="
+    flex 
+    items-center 
+    justify-between 
+    px-6 
+    opacity-0 
+    fixed 
+    bottom-0 
+    left-0
+    w-full
+    h-20 
+    bg-white 
+    border 
+    border-brown-100 
+    transition-all 
+    duration-200 
+    pointer-events-none 
+    max-md:pointer-events-auto 
+    max-md:opacity-100 
+    z-[9999] 
+    gap-5">
+  <div class="flex flex-col gap-1 flex-1">
+    <p class="text-lg line-clamp-1">{{ listing!.title }}</p>
+    <strong class="font-mayennesans font-bold text-xl">${{ listing!.price }}</strong>
+  </div>
+  <div class="w-40">
+    <app-button label="Contact Agent" (click)="handleClick()"></app-button>
+  </div>
+</section>

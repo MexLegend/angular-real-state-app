@@ -1,0 +1,37 @@
+<div class="relative w-full">
+  <textarea class="
+    border-2 
+    disabled:cursor-not-allowed 
+    disabled:opacity-70 
+    font-light 
+    outline-none 
+    p-4 peer 
+    pt-6 
+    rounded-md 
+    transition
+      w-full" [ngClass]="[
+      formGroupRef.get(formControlName)?.hasError('maxlength') 
+      ? 'bg-rose-50/50 border-rose-500 focus:border-rose-500'
+      : 'bg-white  border-neutral-300 focus:border-black',
+    ]" [rows]="rows" [formControl]="formGroupRef.get(formControlName)! | formControlPipe" [id]="id"
+    [placeholder]="placeholder" autocomplete="off">
+    </textarea>
+  <label [for]="id" class="
+      pointer-events-none
+      -translate-y-3 
+      absolute 
+      duration-150 
+      origin-[0] 
+      peer-focus:-translate-y-4 
+      peer-focus:scale-75 
+      peer-placeholder-shown:scale-100 
+      peer-placeholder-shown:translate-y-0 
+      text-md 
+      top-5 
+      left-4 
+      transform z-10" [ngClass]="[
+      formGroupRef.get(formControlName)?.hasError('maxlength')  ? 'text-rose-500' : 'text-zinc-400'
+      ]">
+    {{ label }}
+  </label>
+</div>

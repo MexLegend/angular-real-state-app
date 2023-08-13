@@ -1,0 +1,5 @@
+<div class="flex items-center gap-2" [ngClass]="customClasses">
+    <i [ngClass]="icon"></i>
+    <ng-template *ngIf="customIcon" [ngTemplateOutlet]="customIcon"></ng-template>
+    <span class="">{{tag}}</span>
+</div>
