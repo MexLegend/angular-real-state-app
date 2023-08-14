@@ -5,7 +5,7 @@
 ### [Demo](https://angular-real-state-app.vercel.app)
 
 ## Prerequisites
-- Make sure you have the api setup first
+- Make sure you have the API setup first
 - [Link](https://github.com/MexLegend/angular-real-state-api)
 
 ## Cloning the repository
