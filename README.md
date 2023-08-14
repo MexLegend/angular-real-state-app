@@ -1,8 +1,12 @@
 # Real State
 
-<img src="https://res.cloudinary.com/dtqijixar/image/upload/v1691712385/Previews/Preview_Ecommerce_2_zitmdi.jpg" height="300px"/>
+<img src="https://res.cloudinary.com/devmexsoft/image/upload/v1691990365/AngularRealState/Real_State_Thumbnail_yv0n1s.png" height="400px"/>
 
-### [Demo](https://next-ecommerce-front-swart.vercel.app)
+### [Demo](https://angular-real-state-app.vercel.app)
+
+## Prerequisites
+- Make sure you have the API setup first
+- [Link](https://github.com/MexLegend/angular-real-state-api)
 
 ## Cloning the repository
 
