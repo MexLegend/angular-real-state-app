@@ -2,7 +2,7 @@
 
 <img src="https://res.cloudinary.com/devmexsoft/image/upload/v1691990365/AngularRealState/Real_State_Thumbnail_yv0n1s.png" height="400px"/>
 
-### [Demo](https://angular-real-state-app.vercel.app){:target="_blank"}
+### <a href="https://angular-real-state-app.vercel.app" target="_blank">Demo</a>
 
 ## Cloning the repository
 
