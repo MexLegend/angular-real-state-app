@@ -21,8 +21,6 @@ Install the dependencies:
 ```sh
 $ pnpm i
 # or
-$ yarn
-# or
 $ npm i
 ```
 
@@ -39,8 +37,6 @@ Start the app
 
 ```sh
 $ pnpm start
-# or
-$ yarn start
 # or
 $ npm run start
 ```
